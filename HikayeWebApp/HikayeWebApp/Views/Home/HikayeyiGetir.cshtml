@@ -1,0 +1,33 @@
+﻿@model HikayeWebApp.Models.Entity.TblHikayeler
+@{
+    ViewBag.Title = "HikayeyiGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Hikaye Güncelleme Sayfası</h2>
+@using (Html.BeginForm("HikayeyiGuncelle", "Home", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.HikayeID)
+    @Html.TextBoxFor(m => m.HikayeID, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.HikayeBaslik)
+    @Html.TextBoxFor(m => m.HikayeBaslik, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(m => m.HikayeIcerik)
+    @Html.TextAreaFor(m => m.HikayeIcerik, new { @class = "form-control", @rows = "10" })
+    <br />
+    @Html.LabelFor(m => m.HikayeYazar)
+    @Html.TextBoxFor(m => m.HikayeYazar, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    @Html.LabelFor(m => m.HikayeKategori)
+    @Html.DropDownListFor(m => m.TblKategoriler.KategoriID, (List<SelectListItem>)ViewBag.deger, new { @class = "form-control" })
+
+
+
+</div>
+    <div>
+        <button class="btn btn-warning">Hikayeyi Güncelle</button>
+    </div>
+}
+

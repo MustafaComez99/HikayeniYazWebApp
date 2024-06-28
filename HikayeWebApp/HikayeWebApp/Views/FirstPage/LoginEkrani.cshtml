@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Login Page";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #8B4513;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #8B4513;
+            border-color: #8B4513;
+        }
+
+            .btn-primary:hover {
+                background-color: #A0522D;
+                border-color: #A0522D;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Giriş Yap</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <p style="color:red">@ViewBag.Error</p>
+        }
+
+        <form action="/FirstPage/LoginEkrani" method="post">
+            <div class="form-group">
+                <label for="kullaniciAdi">Kullanıcı Adı:</label>
+                <input type="text" class="form-control" id="kullaniciAdi" name="kullaniciAdi" required>
+            </div>
+            <div class="form-group">
+                <label for="sifre">Şifre:</label>
+                <input type="password" class="form-control" id="sifre" name="sifre" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        </form>
+    </div>
+</body>
+</html>

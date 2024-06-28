@@ -1,0 +1,29 @@
+﻿@using HikayeWebApp.Models.Entity
+@model List<TblKullanicilar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Burada kayıtlı yazarlar listelenir.</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Yazar ID</th>
+        <th>Yazar Adı</th>
+        <th>Yazar Mail Adresi</th>
+
+    </tr>
+    <tbody>
+
+        @foreach (var yzr in Model)
+        {
+            <tr>
+                <td>@yzr.KullaniciID</td>
+                <td>@yzr.KullaniciAdi</td>
+                <td>@yzr.KullaniciMail</td>
+                             
+            </tr>
+        }
+    </tbody>
+</table>

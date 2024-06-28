@@ -1,0 +1,36 @@
+﻿@using HikayeWebApp.Models.Entity
+@model List<TblHikayeler>
+@{
+    ViewBag.Title = "KategoriyeGoreFiltrele";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>KategoriyeGoreFiltrele</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Hikaye Başlığı</th>
+        <th>Kategorisi</th>
+        <th>Yazarı</th>
+        <th>Oluşturulma Tarihi</th>
+    </tr>
+    <tbody>
+        @foreach (var hky in Model)
+        {
+            
+            
+                <tr>
+                    <td>@hky.HikayeBaslik</td>
+                    <td>@hky.TblKategoriler.KategoriAd</td>
+                    <td>@hky.TblKullanicilar.KullaniciAdi</td>
+                    <td>@hky.HikayeTarih</td>
+                    <td>
+                        <a href="@Url.Action("HikayeyiOku", "Home", new { id = hky.HikayeID })" class="btn btn-info">OKU</a>
+                    </td>
+                </tr>
+            
+
+
+        }
+    </tbody>
+</table>

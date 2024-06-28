@@ -1,0 +1,37 @@
+﻿@model HikayeWebApp.Models.Entity.TblHikayeler
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<h1>Hikaye Ekleme Bölümü</h1>
+@if (ViewBag.YazarAd != null)
+{
+
+    <p>Yazar Adı: @ViewBag.YazarAd</p> }
+else
+{
+    <p>Giriş yapılmamış.</p>}
+<h1>@ViewBag.Uyari</h1>
+<form method="post" class="form-group">
+    <div>
+        <label>Hikaye Başlığı</label>
+        <input type="text" class="form-control" name="HikayeBaslik" />
+    </div>
+    <div>
+        <label>Hikaye İçeriği</label>
+        <textarea id="hikayeIcerik" class="form-control" name="HikayeIcerik" rows="10"></textarea>
+    </div>
+    <div>
+        <label>Hikaye Yazarı</label>
+        <input type="text" class="form-control" name="HikayeYazar" value="@ViewBag.yazarid" readonly />
+    </div>
+    <div>
+        <label>Hikaye Kategorisi</label>
+        @Html.DropDownListFor(m => m.TblKategoriler.KategoriID, (List<SelectListItem>)ViewBag.deger, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Hikayeyi Ekle</button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HikayeWebApp", "HikayeWebApp\HikayeWebApp.csproj", "{1FAB1917-CDCA-4964-9ECD-0F0F905A3950}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FAB1917-CDCA-4964-9ECD-0F0F905A3950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAB1917-CDCA-4964-9ECD-0F0F905A3950}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAB1917-CDCA-4964-9ECD-0F0F905A3950}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAB1917-CDCA-4964-9ECD-0F0F905A3950}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33DC0976-47A4-4B36-AD5D-ADCB943325F0}
+	EndGlobalSection
+EndGlobal

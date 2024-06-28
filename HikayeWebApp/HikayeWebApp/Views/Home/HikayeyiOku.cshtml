@@ -1,0 +1,75 @@
+﻿@model HikayeWebApp.Models.Entity.TblHikayeler
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>HikayeyiOku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #3d2815;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .book {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .page {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+            .page::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            .page::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 10px;
+            }
+
+            .page::-webkit-scrollbar-track {
+                background-color: #f5f5f5;
+                border-radius: 10px;
+            }
+
+        .metadata {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="metadata">
+            <h6 style="color:burlywood">Oluşturulma Tarihi: @Model.HikayeTarih</h6>
+            <h6 style="color:burlywood">Hikaye Yazarı: @Model.TblKullanicilar.KullaniciAdi</h6>
+        </div>
+
+        <div class="book">
+            <div class="page">
+                <h1>@Model.HikayeBaslik</h1>
+                <p>@Model.HikayeIcerik</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

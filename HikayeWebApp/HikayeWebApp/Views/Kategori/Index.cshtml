@@ -1,0 +1,14 @@
+﻿@using HikayeWebApp.Models.Entity
+@model List<TblKategoriler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Dilediğiniz kategoriye tıklayarak ilgili hikayeleri görebilirsiniz.</h2>
+@foreach (var ktgr in Model)
+{
+        
+     <a href="@Url.Action("KategoriyeGoreFiltrele", "Kategori", new { id = ktgr.KategoriID })" class="btn btn-info">@ktgr.KategoriAd</a>
+   
+}

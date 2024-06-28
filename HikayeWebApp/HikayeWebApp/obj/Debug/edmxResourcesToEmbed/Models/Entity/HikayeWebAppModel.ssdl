@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbHikayeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TblHikayeler">
+    <Key>
+      <PropertyRef Name="HikayeID" />
+    </Key>
+    <Property Name="HikayeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HikayeBaslik" Type="varchar" MaxLength="50" />
+    <Property Name="HikayeIcerik" Type="varchar(max)" />
+    <Property Name="HikayeYazar" Type="tinyint" />
+    <Property Name="HikayeKategori" Type="tinyint" />
+    <Property Name="HikayeTarih" Type="date" />
+  </EntityType>
+  <EntityType Name="TblKategoriler">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAd" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TblKullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="varchar" MaxLength="50" />
+    <Property Name="KullaniciSifre" Type="varchar" MaxLength="50" />
+    <Property Name="KullaniciMail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_TblHikayeler_TblKategoriler">
+    <End Role="TblKategoriler" Type="Self.TblKategoriler" Multiplicity="0..1" />
+    <End Role="TblHikayeler" Type="Self.TblHikayeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKategoriler">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="TblHikayeler">
+        <PropertyRef Name="HikayeKategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblHikayeler_TblKullanicilar">
+    <End Role="TblKullanicilar" Type="Self.TblKullanicilar" Multiplicity="0..1" />
+    <End Role="TblHikayeler" Type="Self.TblHikayeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKullanicilar">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="TblHikayeler">
+        <PropertyRef Name="HikayeYazar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbHikayeModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblHikayeler" EntityType="Self.TblHikayeler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblKategoriler" EntityType="Self.TblKategoriler" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TblKullanicilar" EntityType="Self.TblKullanicilar" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TblHikayeler_TblKategoriler" Association="Self.FK_TblHikayeler_TblKategoriler">
+      <End Role="TblKategoriler" EntitySet="TblKategoriler" />
+      <End Role="TblHikayeler" EntitySet="TblHikayeler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblHikayeler_TblKullanicilar" Association="Self.FK_TblHikayeler_TblKullanicilar">
+      <End Role="TblKullanicilar" EntitySet="TblKullanicilar" />
+      <End Role="TblHikayeler" EntitySet="TblHikayeler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

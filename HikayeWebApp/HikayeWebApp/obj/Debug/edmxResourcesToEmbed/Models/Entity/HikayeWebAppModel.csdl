@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbHikayeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TblHikayeler">
+    <Key>
+      <PropertyRef Name="HikayeID" />
+    </Key>
+    <Property Name="HikayeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HikayeBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HikayeIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HikayeYazar" Type="Byte" />
+    <Property Name="HikayeKategori" Type="Byte" />
+    <Property Name="HikayeTarih" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="TblKategoriler" Relationship="Self.FK_TblHikayeler_TblKategoriler" FromRole="TblHikayeler" ToRole="TblKategoriler" />
+    <NavigationProperty Name="TblKullanicilar" Relationship="Self.FK_TblHikayeler_TblKullanicilar" FromRole="TblHikayeler" ToRole="TblKullanicilar" />
+  </EntityType>
+  <EntityType Name="TblKategoriler">
+    <Key>
+      <PropertyRef Name="KategoriID" />
+    </Key>
+    <Property Name="KategoriID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblHikayeler" Relationship="Self.FK_TblHikayeler_TblKategoriler" FromRole="TblKategoriler" ToRole="TblHikayeler" />
+  </EntityType>
+  <EntityType Name="TblKullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciSifre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KullaniciMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblHikayeler" Relationship="Self.FK_TblHikayeler_TblKullanicilar" FromRole="TblKullanicilar" ToRole="TblHikayeler" />
+  </EntityType>
+  <Association Name="FK_TblHikayeler_TblKategoriler">
+    <End Role="TblKategoriler" Type="Self.TblKategoriler" Multiplicity="0..1" />
+    <End Role="TblHikayeler" Type="Self.TblHikayeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKategoriler">
+        <PropertyRef Name="KategoriID" />
+      </Principal>
+      <Dependent Role="TblHikayeler">
+        <PropertyRef Name="HikayeKategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblHikayeler_TblKullanicilar">
+    <End Role="TblKullanicilar" Type="Self.TblKullanicilar" Multiplicity="0..1" />
+    <End Role="TblHikayeler" Type="Self.TblHikayeler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblKullanicilar">
+        <PropertyRef Name="KullaniciID" />
+      </Principal>
+      <Dependent Role="TblHikayeler">
+        <PropertyRef Name="HikayeYazar" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbHikayeEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TblHikayeler" EntityType="Self.TblHikayeler" />
+    <EntitySet Name="TblKategoriler" EntityType="Self.TblKategoriler" />
+    <EntitySet Name="TblKullanicilar" EntityType="Self.TblKullanicilar" />
+    <AssociationSet Name="FK_TblHikayeler_TblKategoriler" Association="Self.FK_TblHikayeler_TblKategoriler">
+      <End Role="TblKategoriler" EntitySet="TblKategoriler" />
+      <End Role="TblHikayeler" EntitySet="TblHikayeler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblHikayeler_TblKullanicilar" Association="Self.FK_TblHikayeler_TblKullanicilar">
+      <End Role="TblKullanicilar" EntitySet="TblKullanicilar" />
+      <End Role="TblHikayeler" EntitySet="TblHikayeler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

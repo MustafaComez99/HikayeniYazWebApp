@@ -1,0 +1,56 @@
+﻿@using HikayeWebApp.Models.Entity
+@model List<TblHikayeler>
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Tüm Hikayeler</h1>
+@if ( ViewBag.YazarAd != null)
+{
+
+                <p>Hoşgeldiniz @ViewBag.YazarAd...</p>
+                <p>Burada kendi hikayelerinizi silebilir ya da güncelleyebilirsiniz. Diğer kullanıcıların hikayeleri ise sadece görüntülenmeye açıktır. Keyifli vakit geçirmenizi dileriz...</p>}
+                            else
+                            {
+                <p>Giriş yapılmamış.</p>}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Hikaye Başlığı</th>
+        <th>Kategorisi</th>
+        <th>Yazarı</th>
+        <th>Oluşturulma Tarihi</th>
+    </tr>
+    <tbody>
+
+        @foreach (var hky in Model)
+        {
+            if (hky.TblKullanicilar.KullaniciAdi.ToString() == ViewBag.YazarAd)
+            {
+        <tr>
+            <td>@hky.HikayeBaslik</td>
+            <td>@hky.TblKategoriler.KategoriAd</td>
+            <td>@hky.TblKullanicilar.KullaniciAdi</td>
+            <td>@(hky.HikayeTarih.ToString().Substring(0, Math.Min(hky.HikayeTarih.ToString().Length, 10)))</td>
+            <td><a href="/Home/HikayeyiOku/@hky.HikayeID" class="btn btn-info">OKU</a></td>
+            <td><a href="/Home/HikayeyiGetir/@hky.HikayeID" class="btn btn-success">GÜNCELLE</a></td>
+            <td><a href="/Home/HikayeyiSil/@hky.HikayeID" class="btn btn-danger">SİL</a></td>
+        </tr>
+            }
+
+
+            else
+            {
+                <tr>
+                    <td>@hky.HikayeBaslik</td>
+                    <td>@hky.TblKategoriler.KategoriAd</td>
+                    <td>@hky.TblKullanicilar.KullaniciAdi</td>
+                    <td>@(hky.HikayeTarih.ToString().Substring(0, Math.Min(hky.HikayeTarih.ToString().Length, 10)))</td>
+                    <td><a href="/Home/HikayeyiOku/@hky.HikayeID" class="btn btn-info">OKU</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
